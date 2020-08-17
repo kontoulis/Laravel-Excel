@@ -7,9 +7,9 @@ include_once 'classes/TestFileHandler.php';
 
 class ExcelFileTest extends TestCase {
 
-
-    public function testInit()
+    protected function setUp(): void
     {
+        parent::setUp();
         $importer = app('TestImport');
         $this->assertInstanceOf(\Maatwebsite\Excel\Files\ExcelFile::class, $importer);
     }
@@ -45,6 +45,7 @@ class ExcelFileTest extends TestCase {
     public function testGetResultsDirectly()
     {
         $importer = app('TestImport');
+
         $results = $importer->get();
 
         $this->assertInstanceOf(\Maatwebsite\Excel\Collections\RowCollection::class, $results);

@@ -1,5 +1,6 @@
 <?php
 
+use Maatwebsite\Excel\Exceptions\LaravelExcelException;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ExcelWriterTest extends TestCase {
@@ -7,8 +8,9 @@ class ExcelWriterTest extends TestCase {
     /**
      * Setup
      */
-    public function setUp()
+    public function setUp(): void
     {
+        $this->refreshApplication();
         parent::setUp();
 
         // Set excel class
@@ -205,7 +207,7 @@ class ExcelWriterTest extends TestCase {
     {
         Excel::create('test', function ($writer) {
             $writer->sheet('test', function ($sheet) {
-                $this->setExpectedException(PHPExcel_Exception::class);
+                $this->expectException(PHPExcel_Exception::class);
                 $sheet->createSheetFromArray('test data');
             });
         })->store('csv', __DIR__ . '/exports', true);
@@ -240,27 +242,25 @@ class ExcelWriterTest extends TestCase {
         $this->assertEquals('01234HelloWorld', $results[2]['number']);
         $this->assertEquals('12345678901234567890', $results[3]['number']);
 
-        $this->assertInternalType('double', $results[4]['number']);
+        $this->assertIsFloat($results[4]['number']);
         $this->assertEquals((double) 1234, $results[4]['number']);
 
-        $this->assertInternalType('double', $results[5]['number']);
+        $this->assertIsFloat($results[5]['number']);
         $this->assertEquals('1234.02', $results[5]['number']);
 
-        $this->assertInternalType('double', $results[6]['number']);
+        $this->assertIsFloat($results[6]['number']);
         $this->assertEquals('0.0231231234423', $results[6]['number']);
 
-        $this->assertInternalType('double', $results[7]['number']);
+        $this->assertIsFloat($results[7]['number']);
         $this->assertEquals(4195.99253472222, $results[7]['number']);
 
         $this->assertEquals(1234 + 1234, $results[8]['number']);
     }
 
-    /**
-     * @expectedException Maatwebsite\Excel\Exceptions\LaravelExcelException
-     * @expectedExceptionMessage [ERROR] Aborting spreadsheet render: a minimum of 1 sheet is required.
-     */
     public function testNoSheets()
     {
+        $this->expectException(LaravelExcelException::class);
+        $this->expectExceptionMessage('[ERROR] Aborting spreadsheet render: a minimum of 1 sheet is required.');
         Excel::create('no_sheets', function ($writer) {})->string();
     }
 
@@ -275,7 +275,7 @@ class ExcelWriterTest extends TestCase {
                 ]);
             });
         });
-        $this->setExpectedException(InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $file->store('invalid file extension');
     }
 
@@ -290,7 +290,7 @@ class ExcelWriterTest extends TestCase {
                 ]);
             });
         });
-        $this->setExpectedException(InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $file->download('invalid file extension');
     }
 
@@ -305,7 +305,7 @@ class ExcelWriterTest extends TestCase {
                 ]);
             });
         });
-        $this->setExpectedException(InvalidArgumentException::class);
+        $this->expectException(InvalidArgumentException::class);
         $file->string('invalid file extension');
     }
 

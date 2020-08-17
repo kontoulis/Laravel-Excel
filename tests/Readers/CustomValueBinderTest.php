@@ -5,7 +5,7 @@ class CustomValuBinderTest extends TestCase {
     /**
      * Setup
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 
@@ -28,7 +28,7 @@ class CustomValuBinderTest extends TestCase {
     /**
      * Tear down
      */
-    public function tearDown()
+    public function tearDown(): void
     {
         // Necessary to reset the value binder back to default so that future test classes are unaffected.
         $this->reader->resetValueBinder();
@@ -45,7 +45,7 @@ class CustomValuBinderTest extends TestCase {
     {
         $got = $this->loadedFile->toArray();
 
-        $this->assertInternalType('string', $got[0][0]);
+        $this->assertIsString($got[0][0]);
         $this->assertEquals('00123', $got[0][0]);
     }
 
@@ -61,7 +61,7 @@ class CustomValuBinderTest extends TestCase {
     {
         $got = $this->loadedFile->toArray();
 
-        $this->assertInternalType('string', $got[2][0]);
+        $this->assertIsString($got[2][0]);
         $this->assertEquals('null', $got[2][0]);
     }
 
@@ -69,7 +69,7 @@ class CustomValuBinderTest extends TestCase {
     {
         $got = $this->loadedFile->toArray();
 
-        $this->assertInternalType('string', $got[3][0]);
+        $this->assertIsString($got[3][0]);
         $this->assertEquals('=1+2', $got[3][0]);
     }
 
@@ -77,7 +77,7 @@ class CustomValuBinderTest extends TestCase {
     {
         $got = $this->loadedFile->toArray();
 
-        $this->assertInternalType('string', $got[4][0]);
+        $this->assertIsString($got[4][0]);
         $this->assertEquals('true', $got[4][0]);
     }
 

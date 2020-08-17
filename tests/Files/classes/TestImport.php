@@ -1,12 +1,11 @@
 <?php
-
 use Maatwebsite\Excel\Files\ExcelFile;
 
 class TestImport extends ExcelFile {
 
     protected $delimiter  = ',';
     protected $enclosure  = '"';
-    protected $lineEnding = '\r\n';
+//    protected $lineEnding = '\r\n';
 
     /**
      * Get file to import
@@ -28,4 +27,4 @@ class TestImport extends ExcelFile {
         ];
     }
 
-} 
+}

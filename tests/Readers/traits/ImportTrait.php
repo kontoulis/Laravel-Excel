@@ -1,5 +1,8 @@
 <?php
 
+use Illuminate\Support\Facades\Config;
+use Maatwebsite\Excel\Readers\LaravelExcelReader;
+
 trait ImportTrait {
 
     /**
@@ -14,10 +17,16 @@ trait ImportTrait {
      */
     protected $loadedFile;
 
+    protected $excel;
+    /**
+     * @var LaravelExcelReader
+     */
+    protected $reader;
+
     /**
      * Setup
      */
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
 

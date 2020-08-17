@@ -513,7 +513,7 @@ class LaravelExcelWriter {
     {
         return $this->sheet;
     }
-    
+
     /**
      * Set the active sheet index
      * @param integer $index

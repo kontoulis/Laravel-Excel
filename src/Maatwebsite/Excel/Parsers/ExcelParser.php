@@ -124,8 +124,9 @@ class ExcelParser {
             $iterator = $this->excel->getWorksheetIterator();
 
             // Loop through the worksheets
-            foreach ($iterator as $this->worksheet)
+            foreach ($iterator as $thisWorksheet)
             {
+                $this->worksheet = $thisWorksheet;
                 // Check if the sheet might have been selected by it's index
                 if ( $this->reader->isSelectedByIndex($iterator->key()) )
                 {

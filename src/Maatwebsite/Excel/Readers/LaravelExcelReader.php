@@ -5,7 +5,6 @@ use Illuminate\Contracts\Bus\Dispatcher;
 use Illuminate\Support\Facades\Queue;
 use Maatwebsite\Excel\Classes\PHPExcel;
 use PHPExcel_Cell;
-use PHPExcel_IOFactory;
 use PHPExcel_Cell_IValueBinder;
 use PHPExcel_Cell_DefaultValueBinder;
 use Illuminate\Filesystem\Filesystem;
@@ -394,7 +393,7 @@ class LaravelExcelReader
      */
     public function sheetsSelected()
     {
-        return count($this->selectedSheets) > 0;
+            return !empty($this->selectedSheets);
     }
 
     /**
@@ -689,7 +688,7 @@ class LaravelExcelReader
             $chunkSize  = ($startRow == 0 && $this->hasHeading()) ? $size + 1 : $size;
 
             $encoding = null;
-            
+
             if ($this->format == 'CSV') {
                 $encoding = $this->reader->getInputEncoding($encoding);
             }
@@ -1386,7 +1385,6 @@ class LaravelExcelReader
     {
         // Merge the selected columns
         $columns = array_merge($this->columns, $columns);
-
         // Parse the file
         $parser       = new ExcelParser($this);
         $this->parsed = $parser->parseFile($columns);
@@ -1400,7 +1398,7 @@ class LaravelExcelReader
     protected function _setReader()
     {
         // Init the reader
-        $this->reader = PHPExcel_IOFactory::createReader($this->format);
+        $this->reader = \PHPExcel_IOFactory::createReader($this->format);
         $this->_setReaderDefaults();
 
         return $this;
@@ -1475,7 +1473,7 @@ class LaravelExcelReader
     {
         $this->excel->disconnectWorksheets();
         $this->resetValueBinder();
-        unset($this->parsed);
+        $this->parsed = null;
     }
 
     /**

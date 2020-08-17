@@ -1107,7 +1107,7 @@ class LaravelExcelWorksheet extends PHPExcel_Worksheet {
      *  Set the columns you want to merge
      * @return LaravelExcelWorksheet
      * @param array $mergeColumn An array of columns you want to merge
-     * @param bool  $alignment
+     * @param bool  $alignmentgetHighestRow
      */
     public function setMergeColumn(Array $mergeColumn, $alignment = false)
     {
