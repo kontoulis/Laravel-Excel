@@ -33,8 +33,7 @@
     "jeremeamia/superclosure": "^2.3",
     "nesbot/carbon": "^2.0",
     "tijsverkoyen/css-to-inline-styles": "~2.0",
-    "laravel/helpers": "^1.2",
-    "phpoffice/phpspreadsheet": "^1.14"
+    "laravel/helpers": "^1.2"
   },
   "require-dev": {
     "phpseclib/phpseclib": "~1.0",
