@@ -25,11 +25,11 @@
   ],
   "require": {
     "php": "^7.2",
-    "phpoffice/phpexcel": "dev-laravel-6",
-    "illuminate/cache": "^6.1",
-    "illuminate/config": "^6.1",
-    "illuminate/filesystem": "^6.1",
-    "illuminate/support": "^6.1",
+    "phpoffice/phpexcel": "dev-laravel-7",
+    "illuminate/cache": "^7.0",
+    "illuminate/config": "^7.0",
+    "illuminate/filesystem": "^7.0",
+    "illuminate/support": "^7.0",
     "jeremeamia/superclosure": "^2.3",
     "nesbot/carbon": "^2.0",
     "tijsverkoyen/css-to-inline-styles": "~2.0",
@@ -37,9 +37,9 @@
   },
   "require-dev": {
     "phpseclib/phpseclib": "~1.0",
-    "phpunit/phpunit": "^8.0",
+    "phpunit/phpunit": "^8.5",
     "mockery/mockery": "^1.4",
-    "orchestra/testbench": "^4.0",
+    "orchestra/testbench": "^5.0",
     "rector/rector": "^0.7.64"
   },
   "suggest": {
